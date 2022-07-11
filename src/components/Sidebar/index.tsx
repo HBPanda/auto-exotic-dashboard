@@ -69,13 +69,14 @@ function Sidebar() {
           />
         ))}
       </nav>
-      <form onSubmit={handleAddCategory} noValidate>
+      <form noValidate>
         <span>
           <img src={addIcon} alt="Choose Icon" width={15} />
         </span>
         <input
+          disabled
           type="text"
-          placeholder="Create new category..."
+          placeholder="Create new category... (Coming soon)"
           onChange={(e) => setTitle(e.target.value)}
           value={title}
           ref={inputRef}

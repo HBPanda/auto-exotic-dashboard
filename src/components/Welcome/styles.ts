@@ -195,7 +195,7 @@ const WelcomeStyles = styled.div<Props>`
           cursor: pointer;
 
           color: white;
-          background-color: #008ffd;
+          background-color: #3275f0;
 
           transition: 0.25s ease;
           transition-property: background-color;
@@ -216,7 +216,7 @@ const WelcomeStyles = styled.div<Props>`
 
           outline: none;
           border: 1px solid transparent;
-          border-color: #008ffd;
+          border-color: #3275f0;
 
           font-family: "Inter var", sans-serif;
           font-size: 14px;
@@ -226,7 +226,7 @@ const WelcomeStyles = styled.div<Props>`
 
           cursor: pointer;
 
-          color: #008ffd;
+          color: #3275f0;
           background-color: transparent;
 
           transition: 0.25s ease;
@@ -245,7 +245,7 @@ const WelcomeStyles = styled.div<Props>`
           svg {
             position: relative;
 
-            fill: #008ffd;
+            fill: #3275f0;
           }
         }
       }

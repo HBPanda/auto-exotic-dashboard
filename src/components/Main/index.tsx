@@ -12,7 +12,7 @@ import { PathContext } from "../../contexts/PathContext";
 import { TasksContext, TaskProps } from "../../contexts/TasksContext";
 import { UserContext } from "../../contexts/UserContext";
 
-import donaBlue from "../../assets/donaBlue.svg";
+import AEBlue from "../../assets/AEBlue.svg";
 
 import MainStyles from "./styles";
 
@@ -27,7 +27,10 @@ function Main() {
   const { addTask, tasks } = useContext(TasksContext);
   const { user } = useContext(UserContext);
 
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState("carp");
+  const [image, setImage] = useState("carp");
+  const [title, setTitle] = useState("");
+  const [hex, setHex] = useState("");
   const [checked, setChecked] = useState(false);
   const [category, setCategory] = useState<CategoryProps>(categories[0]);
   const [isSelectingCategory, setIsSelectingCategory] = useState(false);
@@ -35,21 +38,28 @@ function Main() {
   function handleAddTask(e: React.FormEvent) {
     e.preventDefault();
 
-    if (!content) return;
+    if (!title) return;
 
     const date = new Date();
 
     const newTask: TaskProps = {
       category: category,
       checked: checked,
+      title: title,
+      hex: hex,
       content: content,
+      image: image,
       date: date.toString(),
       id: uuid(),
     };
 
     addTask(newTask);
 
+    setTitle("");
     setContent("");
+    setHex("");
+    setImage("");
+    
   }
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -90,7 +100,7 @@ function Main() {
       <div id="tasks-area-wrapper">
         {path === "/" && (
           <header>
-            <img src={donaBlue} alt="Dona Logo" width={35} />
+            <img src={AEBlue} alt="AE Logo" width={35} />
             <h1>
               Good {getTimeOfDay()}, {user.name}
             </h1>
@@ -106,12 +116,12 @@ function Main() {
               <input type="checkbox" defaultChecked={checked} onChange={() => setChecked(!checked)} />
               <div className="checkbox-div" />
             </label>
-            <form noValidate onSubmit={handleAddTask}>
+            <form noValidate>
               <input
+                disabled
                 type="text"
-                placeholder="Write a new task..."
-                onChange={(e) => setContent(e.target.value)}
-                value={content}
+                placeholder="Write a new task... (Coming soon)"
+                value={title}
                 ref={inputRef}
               />
             </form>
@@ -139,12 +149,15 @@ function Main() {
           </div>
         </div>
         <ul>
-          {filteredTasks.reverse().map((task) => (
+          {filteredTasks.map((task) => (
             <Task
               task={{
                 category: task.category,
                 checked: task.checked,
+                title: task.title,
+                image: task.image,
                 content: task.content,
+                hex: task.hex,
                 date: task.date,
                 id: task.id,
               }}

@@ -22,9 +22,9 @@ interface Props {
 const defaultCategory = [
   {
     taskAmout: 0,
-    title: "Home",
+    title: "Signage",
     slug: "/",
-    color: "008FFD",
+    color: "3275f0",
   },
 ];
 

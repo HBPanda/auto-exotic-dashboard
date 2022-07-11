@@ -7,15 +7,15 @@ interface Props {
 
 const TaskStyles = styled.li<Props>`
   list-style: none;
-
+  img{  
+    display: block
+  }
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 
   width: 100%;
-  min-height: 70px;
+  min-height: 420px;
 
-  align-items: center;
-  justify-content: space-between;
 
   padding: 10px 0;
   padding-left: 20px;
@@ -32,7 +32,36 @@ const TaskStyles = styled.li<Props>`
   transition-property: opacity transform;
 
   animation: taskSlideDown 0.25s ease;
+  button {
+    display: grid;
+    place-items: center;
 
+    width: 35px;
+    height: 35px;
+
+    border: none;
+    outline: none;
+
+    cursor: pointer;
+
+    border-radius: 50%;
+    background-color: transparent;
+
+    transition: 0.25s ease;
+    transition-property: background-color;
+
+    :hover {
+      background-color: ${(props) => props.theme.bold};
+    }
+
+    img {
+      pointer-events: none;
+    }
+  }
+
+  .taskTitle{
+    flex: 1
+  }
   .left {
     display: flex;
     flex-direction: row;
@@ -147,32 +176,7 @@ const TaskStyles = styled.li<Props>`
       background-color: ${(props) => props.theme.bg};
     }
 
-    button {
-      display: grid;
-      place-items: center;
-
-      width: 35px;
-      height: 35px;
-
-      border: none;
-      outline: none;
-
-      cursor: pointer;
-
-      border-radius: 50%;
-      background-color: transparent;
-
-      transition: 0.25s ease;
-      transition-property: background-color;
-
-      :hover {
-        background-color: ${(props) => props.theme.bold};
-      }
-
-      img {
-        pointer-events: none;
-      }
-    }
+    
   }
 
   @media (max-width: 768px) {

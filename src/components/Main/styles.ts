@@ -165,7 +165,6 @@ const MainStyles = styled.main<Props>`
           }
         }
       }
-
       .right {
         position: relative;
 
@@ -253,6 +252,11 @@ const MainStyles = styled.main<Props>`
         .right {
           opacity: 1;
           pointer-events: auto;
+        }
+        .top-right{
+          position: absolute;
+          top: 0px;
+          right: 0px;
         }
       }
     }

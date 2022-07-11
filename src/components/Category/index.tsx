@@ -24,7 +24,7 @@ function Category({ category }: CategoryComponentProps) {
   const { tasks, removeTask } = useContext(TasksContext);
 
   const [beingRemoved, setBeingRemoved] = useState("");
-  const [color, setColor] = useState("008FFD");
+  const [color, setColor] = useState("3275f0");
   const [slugBeingUpdated, setSlugBeingUpdated] = useState("");
   const [isSelectingColor, setIsSelectingColor] = useState(false);
 

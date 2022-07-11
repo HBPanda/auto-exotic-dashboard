@@ -32,7 +32,7 @@ const colors = [
 ];
 
 function ColorPicker({ setColor, isSelectingColor, setIsSelectingColor }: ColorPickerProps) {
-  const [customColor, setCustomColor] = useState("008FFD");
+  const [customColor, setCustomColor] = useState("3275f0");
 
   const wrapperRef = useRef<HTMLDivElement>(null);
   useOnClickOutside(wrapperRef, () => setIsSelectingColor(false));
@@ -45,7 +45,7 @@ function ColorPicker({ setColor, isSelectingColor, setIsSelectingColor }: ColorP
   }
 
   useEffect(() => {
-    if (customColor === "") setCustomColor("008FFD");
+    if (customColor === "") setCustomColor("3275f0");
   }, [customColor]);
 
   return (

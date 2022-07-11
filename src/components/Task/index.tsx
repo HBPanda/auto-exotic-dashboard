@@ -9,6 +9,8 @@ interface TaskComponentProps {
   task: TaskProps;
 }
 
+import copyIcon from "../../assets/copyIcon.svg";
+import copyHexIcon from "../../assets/copyHex.svg";
 import removeIcon from "../../assets/removeIcon.svg";
 
 import TaskStyles from "./styles";
@@ -16,7 +18,7 @@ import TaskStyles from "./styles";
 import { lightTheme } from "../../App";
 
 function Task({ task }: TaskComponentProps) {
-  const { removeTask, updateCheckedStatus } = useContext(TasksContext);
+  const { removeTask, updateCheckedStatus, copyContent, copyHex } = useContext(TasksContext);
 
   const [beingRemoved, setBeingRemoved] = useState("");
   const [checked, setChecked] = useState(task.checked);
@@ -25,7 +27,9 @@ function Task({ task }: TaskComponentProps) {
     setBeingRemoved(id);
     waitForAnimationAndRemove(id);
   }
-
+  function handleCopyTask(id: string){
+    copyContent(id);
+  }
   const waitForAnimationAndRemove = (id: string) => {
     setTimeout(() => {
       removeTask(id);
@@ -39,31 +43,25 @@ function Task({ task }: TaskComponentProps) {
   return (
     <TaskStyles theme={lightTheme} beingRemoved={beingRemoved === task.id} checked={task.checked}>
       <div className="left">
-        <label>
-          <input type="checkbox" defaultChecked={checked} onChange={() => setChecked(!checked)} />
-          <div className="checkbox-div" />
-        </label>
-        <h3>{task.content}</h3>
+        <h3 hidden>{task.title}</h3>
+        <p hidden>{task.content}</p>
+        <div>
+          <button onClick={() => handleCopyTask(task.id)}>
+            <img src={copyIcon} alt="" width={15} />
+          </button>
+        </div>
+        <div>
+          <button onClick={() => copyHex(task.id)}>
+              <img src={copyHexIcon} alt="" width={15} />
+          </button>
+        </div>
+        {/* <div>
+          <button onClick={() => handleRemoveTask(task.id)}>
+              <img src={removeIcon} alt="" width={15} />
+          </button>
+        </div> */}
       </div>
-
-      <div className="right">
-        <h4 className="date">{`${task.date.split(" ")[1]} ${task.date.split(" ")[2]}`}</h4>
-        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect
-            x="1.25"
-            y="1.25"
-            width="12.5"
-            height="12.5"
-            rx="4.75"
-            stroke={`#${task.category.color}`}
-            strokeWidth="2.5"
-          />
-        </svg>
-
-        <button onClick={() => handleRemoveTask(task.id)}>
-          <img src={removeIcon} alt="" width={15} />
-        </button>
-      </div>
+      <img src={task.image} height={350} style={{padding: 15}} alt="" />
     </TaskStyles>
   );
 }
